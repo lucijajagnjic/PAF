@@ -26,6 +26,6 @@ plt.plot(vrijeme,pomak)
 plt.subplot(312)
 plt.plot(vrijeme, brzina)
 plt.subplot(313)
-plt.plot(akceleracija,vrijeme)
+plt.plot(vrijeme,akceleracija)
 
 plt.show()

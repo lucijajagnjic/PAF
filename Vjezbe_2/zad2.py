@@ -14,7 +14,7 @@ tl = []
 
 for i in range(100):
     x = vx * t 
-    y = v0 * sin(theta) * t - 0.1 * g * t * t
+    y = v0 * sin(theta) * t - 0.5 * g * t * t
     t += dt
 
     xl.append(x)
