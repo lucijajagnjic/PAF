@@ -1,20 +1,25 @@
 import matplotlib.pyplot as plt 
-from math import sin, cos
-v0 = 20 #brzina je u m/s
-theta = 60 
-g = 9.8
+from math import sin, cos, pi
+v0 = 20 
+theta = 60
+theta = (theta/360) * 2 * pi 
+g = 9.81
 dt = 0.1
+t = 10
+N = int(t/dt)
 t = 0
 x = 0
 y = 0
 vx = v0 * cos(theta)
+vy = v0 * sin(theta)
 xl = []
 yl = []
 tl = []
 
-for i in range(100):
-    x = vx * t 
-    y = v0 * sin(theta) * t - 0.5 * g * t * t
+for i in range(N):
+    x = x + vx * dt
+    vy = vy - g * dt
+    y = y + vy * dt
     t += dt
 
     xl.append(x)
