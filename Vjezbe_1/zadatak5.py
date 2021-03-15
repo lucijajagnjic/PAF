@@ -12,4 +12,4 @@ def odrediPravac(x1,y1,x2,y2,znak):
         fig.savefig('ime.png')
         #sprema kao pdf
 
-odrediPravac(1,2,6,5,4)
+odrediPravac(1,2,6,5,0)
