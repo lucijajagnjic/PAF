@@ -10,9 +10,9 @@ promjena = 0.001
 
 for i in range(1000):
     dt = dt + promjena
-    graf = math.fabs(((p.range(dt)-p.analitickoRacunanje())/p.analitickoRacunanje())*100)
+    gresk = math.fabs(((p.range(dt)-p.analitickoRacunanje())/p.analitickoRacunanje())*100)
     dt_l.append(dt)
-    greska.append(graf)
+    greska.append(gresk)
     p.reset()
 
 plt.plot(dt_l,greska)

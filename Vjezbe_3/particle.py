@@ -11,11 +11,11 @@ class Particle:
         self.vy = v0 * sin(self.alfa)
         self.x_ = []
         self.y_ = []
-        self.x_ = append(x0)
-        self.y_ = append(y0)
+        self.x_.append(self.x)
+        self.y_.append(self.y)
 
     def printInfo(self):
-        print("v0 = {0:.2f}, alfa = {1:.2f}, x0 = {2:.2f}, y0 = {3:.2f}".format(self.v0, self.alfa, self.x0, self.y0))
+        print("v0 = {0:.2f}, alfa = {1:.2f}, x0 = {2:.2f}, y0 = {3:.2f}".format(self.v0, self.alfa, self.x, self.y))
 
     def reset(self):
         self.v0 = 0
@@ -35,19 +35,19 @@ class Particle:
        self.y_.append(self.y)
        
        
-       def range(self):
-           x = self.x
-           while True:
-               self.__move(dt)
-               if self.y <= 0:
-                   break
-                   
-                   return self.x - x
+    def range(self):
+        x = self.x
+        while True:
+            self.__move(0.01)
+            if self.y <= 0:
+                break
+                
+                return self.x - x
 
-        def plotTrajectory(self):
-            plt.plot(self.x_,self.y_)
-            plt.show()
+    def plotTrajectory(self):
+        plt.plot(self.x_,self.y_)
+        plt.show()
 
-        def analitickoRacunanje(self):
-            D = (self.v0**2*sin(2*self.alfa))/9.81
-            return D
+    def analitickoRacunanje(self):
+        D = (self.v0**2*sin(2*self.alfa))/9.81
+        return D
