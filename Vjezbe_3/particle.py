@@ -35,10 +35,10 @@ class Particle:
        self.y_.append(self.y)
        
        
-    def range(self):
+    def range(self,dt):
         x = self.x
         while True:
-            self.__move(0.01)
+            self.__move(dt)
             if self.y <= 0:
                 break
                 
