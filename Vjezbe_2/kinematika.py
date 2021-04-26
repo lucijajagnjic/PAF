@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from math import sin, cos, pi
+
 def kosi_hitac(v0, theta, t):
     theta = (theta/360)*2*pi
     vx = v0 * cos(theta)

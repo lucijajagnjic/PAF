@@ -1,63 +1,51 @@
-import math 
 import numpy as np 
-import matplotlib.pyplot as plt
 
 def derivacija(func,x,h):
-    d3 = (func(h+x)-func(x-h))/(2*h)
-    return d3
+    d = (func(h+x)-func(x)) / h
+    return d
 
 def derivacija2 (func,x,h):
-    d2 = ((func(x))-(func(x-h))) / h
+    d = (func(h+x)-func(x-h)) / (2*h)
 
 
-def deriviranje(func,x1,x2,h,m):
+def deriviranje(func,x1,x2,h,m=3):
     dlista = []
     xlista = np.arange(x1,x2,h)
 
-    if m == 3:
-        for x in xlista:
-            d = derivacija(func,x,h)
-            dlista.append(d)
-
+    for x in xlista:
+        if m == 3:
+            d = derivacija2(func,h,x)
         elif m == 2:
-            for x in xlista:
-                d = derivacija2(func,x,h)
-                dlista.append(d) 
+            d = derivacija(func,h,x)
+        else:
+            print("Nema opcije.")
+        dlista.append(d)
 
     return xlista, dlista
 
-def integriranje(func, a, b, N):
+def integriranje(func,a,b,N):
     dx = (float(b)-float(a)) / float(N)
-    print(dx)
-    gX = a + dx
-    dX = a
-    gornjaMeda = 0
-    donjaMeda = 0
+    xg = a
+    xd = a + dx
+    gm = 0
+    dm = 0
 
     for i in range(N):
-        if abs(func(gX)) >= abs(func(dX)):
-            gornjaMeda += func(gX)*dx
-            donjaMeda += func(dX)*dx
-        else:
-            gornjaMeda += func(dX)*dx
-            donjaMeda += func(gX)*dx
-        gX += dx
-        dX += dx
-    return gornjaMeda, donjaMeda
+        gm += func(xg)*dx
+        dm += func(xd)*dx
+        xd += dx
+        xg += dx
 
-def trapezium(func,a,b,N):
-    dx = (float(b)-float(a)) / float(N)
-    gX = a + dx
-    dX = a
-    I = 0.0
+    return gm,dm
+
+def integracija(func,a,b,N):
+    dx = (b-a) / N
+    xk = a
+    suma = 0
+
     for i in range(N):
-        I += ((func(gX)+func(dX))/2)*dx
-        gX += dx
-        dX += dx
-    
-    return I
+        suma += (func(xk) + func(xk + dx))
+        xk += dx
+    integ = (dx/2) * suma
 
-def analytic(func,x1,x2):
-    a = func(x2) - func(x1)
-
-    return a
+    return integ
