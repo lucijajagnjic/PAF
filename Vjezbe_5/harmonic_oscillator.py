@@ -20,7 +20,7 @@ class HarmonicOscillator:
 
 
     def oscillate(self, dt, T):
-        N = int(t/dt)
+        N = int(self.t/dt)
         
         for i in range(N):
 
@@ -31,7 +31,7 @@ class HarmonicOscillator:
             self.Alista.append(self.a)
             self.Xlista.append(self.x0)
             self.Vlista.append(self.v0)
-            self.Tlista.append(t)
+            self.Tlista.append(self.t)
 
         return self.Xlista, self.Vlista, self.Alista, self.Tlista
 
