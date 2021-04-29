@@ -16,9 +16,9 @@ for x in xl1:
     d = 15*x**2 - 4*x +2
     dl1.append(d)
 
-a,b = calculus.deriviranje(f4,0.1,-2,2)
+a,b = calculus.deriviranje(f4,-2,2,0.1)
 plt.plot(xl1,dl1)
-plt.scatter(a,b, s = 5)
+plt.scatter(a,b, s = 5, c ='r')
 plt.show()
 
 def ftrig(x):
@@ -29,11 +29,11 @@ ht = 0.01
 dl2 = []
 xl2 = np.arange(xt,xt2,ht)
 
-for x in x_l2:
+for x in xl2:
     d = math.cos(2*x)*2+math.sin(x)
     dl2.append(d)
 
-c,d = calculus.deriviranje(ftrig,0.01,-10,10)
+c,d = calculus.deriviranje(ftrig,-10,10,0.1)
 plt.plot(xl2,dl2)
 plt.scatter(c,d, s = 1)
 plt.show()

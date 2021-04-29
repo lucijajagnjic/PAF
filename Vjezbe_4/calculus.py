@@ -6,6 +6,7 @@ def derivacija(func,x,h):
 
 def derivacija2 (func,x,h):
     d = (func(h+x)-func(x-h)) / (2*h)
+    return d
 
 
 def deriviranje(func,x1,x2,h,m=3):
@@ -14,9 +15,9 @@ def deriviranje(func,x1,x2,h,m=3):
 
     for x in xlista:
         if m == 3:
-            d = derivacija2(func,h,x)
+            d = derivacija2(func,x,h)
         elif m == 2:
-            d = derivacija(func,h,x)
+            d = derivacija(func,x,h)
         else:
             print("Nema opcije.")
         dlista.append(d)
