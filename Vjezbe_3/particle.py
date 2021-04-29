@@ -17,7 +17,7 @@ class Particle:
         self.vy_ = []
 
     def printInfo(self):
-        print(f'{self.v0},{self.alfa},{self.x},{self.y}')
+        print(self.v0,self.alfa,self.x,self.y)
 
     def reset(self):
         self.v0 = 0
@@ -35,7 +35,7 @@ class Particle:
         self.y = self.y + self.vy * dt
         self.x_.append(self.x)
         self.y_.append(self.y)
-        self.vt_.append(self.vy)
+        self.vy_.append(self.vy)
        
        
     def range(self,dt):
