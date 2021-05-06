@@ -24,7 +24,6 @@ class Particle:
         self.alfa = 0
         self.x0 = 0
         self.y0 = 0
-        self.vx = 0
         self.x_ = []
         self.y_ = []
         self.vy_ = []
