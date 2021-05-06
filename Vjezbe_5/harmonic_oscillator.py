@@ -3,34 +3,33 @@ import matplotlib.pyplot as plt
 
 class HarmonicOscillator:
     def __init__(self, k, m, x0, v0):
-        self.Tlista = []
-        self.Alista = []
         self.Xlista = []
         self.Vlista = []
+        self.Alista = []
+        self.Tlista = []
         self.k = k
         self.m = m
         self.x = x0
         self.v = v0
         self.a = -(self.k * self.x) / self.m
         self.t = 0
-        self.Tlista.append(self.t)
-        self.Alista.append(self.a)
-        self.Xlista.append(self.x)
-        self.Vlista.append(self.v)
+        self.Xlista.append(self.t)
+        self.Vlista.append(self.a)
+        self.Alista.append(self.x)
+        self.Tlista.append(self.v)
 
 
-    def oscillate(self, dt, T):
-        N = int(self.t/dt)
+    def oscillate(self, dt, t):
+        N = int(t/dt)
         
         for i in range(N):
-
-            self.a = -(self.k * self.x) * self.m
+            self.a = -(self.k * self.x) / self.m
             self.v = self.v + self.a * dt
             self.x = self.x + self.v * dt
             self.t += dt
+            self.Xlista.append(self.x)
+            self.Vlista.append(self.v)
             self.Alista.append(self.a)
-            self.Xlista.append(self.x0)
-            self.Vlista.append(self.v0)
             self.Tlista.append(self.t)
 
         return self.Xlista, self.Vlista, self.Alista, self.Tlista
