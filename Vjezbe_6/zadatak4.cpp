@@ -3,11 +3,16 @@ using namespace std;
 
 void jednadzba(float a1, float b1, float c1, float a2, float b2, float c2)
 {
+    cout << a1 << "x + " << b1 << "y = " << c1 << endl;
+    cout << a2 << "x + " << b2 << "y = " << c2 << endl;
+
     float x;
-    x = (b1*c2 - b2*c1) / (b1*a2 -a1*b2);
+    x = (b1 * c2 - b2 * c1) / (b1 * a2 -a1 * b2);
     float y;
-    y = (c1 - a1*x) / b1;
-    cout << "X je: " << x << " Y je: " << y << endl;
+    y = (a1 * c2 - a2 * c1) / (a1 + b2 - a2 + b1);
+
+    cout << "X je: " << x << endl;
+    cout << "Y je: " << y << endl;
 }
 
 int main()
