@@ -1,0 +1,48 @@
+#include <iostream>
+#include "Particle.h"
+#include <math.h>
+#include <vector>
+using namespace std;
+#ifndef M_PI
+    #define M_PI 3.14159265358979323846 
+#endif
+
+Particle::Particle(double v0, double alpha0, double x0, double y0, double step)
+{ 
+  alpha = (alpha0 * M_PI) / 180;
+  vx = v0 * cos(alpha);    
+  vy = v0 * sin(alpha);
+  dt = step;
+  r0 = x0;
+  t0 = 0.0;
+  x = x0;
+  y = y0;
+};
+
+void Particle::evolve()
+{
+  while(y >= 0)
+  {
+    vx += 0.;
+    vy += g*dt;
+    x += vx * dt;
+    y += vy * dt;
+    t += dt;
+  }
+}
+
+double Particle::range()
+{
+  evolve();  
+  double r = x - r0;
+  cout << "Domet projektila je: " << r << " m" << endl;
+  return 0;
+}
+
+double Particle::tTime()
+{
+  evolve();
+  double T = t;
+  cout << "Ukupno vrijeme je: " << T << " s" << endl;
+  return 0;
+}
