@@ -3,7 +3,7 @@ class Particle
     private:
         double t, x, y, vx, vy;  
         double dt;
-        //double g = -9.81;
+        double g = -9.81;
         double r0, t0;
         double alpha;
 

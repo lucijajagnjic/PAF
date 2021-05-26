@@ -4,7 +4,7 @@
 #include <vector>
 using namespace std;
 #ifndef M_PI
-    #define M_PI 3.14159265358979323846 
+#define M_PI 3.14159265358979323846 
 #endif
 
 Particle::Particle(double v0, double alpha0, double x0, double y0, double step)
@@ -33,7 +33,7 @@ void Particle::evolve()
 
 double Particle::range()
 {
-  evolve();  
+  evolve();
   double r = x - r0;
   cout << "Domet projektila je: " << r << " m" << endl;
   return 0;
