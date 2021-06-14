@@ -8,7 +8,7 @@ class Projectile:
         self.x = 0
         self.y = 0
         self.m = m
-        self.theta =(theta/180)*pi
+        self.theta =(theta/180.)*pi
         self.v0 = v0
         self.dt = dt
         self.t = 0
@@ -64,39 +64,41 @@ class Projectile:
             self.ay = - self.g - abs((self.vy ** 2) * self.rho* self.C * self.S) / (2*self.m)
             self.y_.append(self.y)
 
+        return self.x_, self.y_
+
     def _akeceleracijaX(self, vx):
         return (- abs((self.vx**2) * self.rho * self.C * self.S) / (2*self.m))
        
     def _akceleracijaY(self, vy):
         return (- self.g - abs((self.vy ** 2) * self.rho * self.C * self.S) / (2*self.m))
 
-    def rungeKutta(self):
-            k1vx = self._akeceleracijaX(self.vx) * self.dt
-            k1x = self.vx * self.dt 
-            k2v = self._akeceleracijaX(k1v/2) * self.dt
-            k2vx = (self.vx + (k1vx/2)) * self.dt 
-            k3vx = self._akeceleracijaX(self.vx + (self.k2v/2)) * self.dt 
-            k3x = (self.vx + (k2vx/2)) * self.dt
-            k4vx = self._akeceleracijaX(self.vx + k3vx) * self.dt 
-            k4x = (self.vx + k3vx) * self.dt 
-            self.vx += (1/6) * (k1vx + 2*k2vx + 2*k3vx+ k4vx)
-            self.x += (1/6) * (k1x + 2*k2x + 2*k3x + k4x)
-            self.x_x.append(self.x)
+    def __rungeKutta(self):
+        k1vx = self._akeceleracijaX(self.vx) * self.dt
+        k1x = self.vx * self.dt 
+        k2vx = self._akeceleracijaX(self.vx + (k1vx/2)) * self.dt 
+        k2x = (self.vx + k1vx/2) * self.dt
+        k3vx = self._akeceleracijaX(self.vx + (k2vx/2)) * self.dt 
+        k3x = (self.vx + (k2vx/2)) * self.dt
+        k4vx = self._akeceleracijaX(self.vx + k3vx) * self.dt 
+        k4x = (self.vx + k3vx) * self.dt 
+        self.vx += (1/6) * (k1vx + 2*k2vx + 2*k3vx+ k4vx)
+        self.x += (1/6) * (k1x + 2*k2x + 2*k3x + k4x)
+        self.x_x.append(self.x)
             
-            k1vy = self._akceleracijaY(self.vy) * self.dt
-            k1y = self.vy * self.dt 
-            k2vy = self._akceleracijaY(self.vy + (k1vy/2)) * self.dt 
-            k2y = (self.vy + (k1vy/2)) * self.dt 
-            k3vy = self._akceleracijaY(self.vy + (k2vy/2)) * self.dt 
-            k3y = (self.vy + (k2vy/2)) * self.dt
-            k4vy = self._akceleracijaY(self.vy + k3vy) * self.dt 
-            k4y = (self.vy + k3vy) * self.dt 
-            self.vy += (1/6) * (k1vy + 2*k2vy + 2*k3vy + k4vy)
-            self.y += (1/6) * (k1y + 2*k2y + 2*k3y + k4y)
-            self.y_y(self.y)
+        k1vy = self._akceleracijaY(self.vy) * self.dt
+        k1y = self.vy * self.dt 
+        k2vy = self._akceleracijaY(self.vy + (k1vy/2)) * self.dt 
+        k2y = (self.vy + (k1vy/2)) * self.dt 
+        k3vy = self._akceleracijaY(self.vy + (k2vy/2)) * self.dt 
+        k3y = (self.vy + (k2vy/2)) * self.dt
+        k4vy = self._akceleracijaY(self.vy + k3vy) * self.dt 
+        k4y = (self.vy + k3vy) * self.dt 
+        self.vy += (1/6) * (k1vy + 2*k2vy + 2*k3vy + k4vy)
+        self.y += (1/6) * (k1y + 2*k2y + 2*k3y + k4y)
+        self.y_y.append(self.y)
 
     def otporZrakaRK(self):
         while self.y >= 0:
-            self.rungeKutta()
+            self.__rungeKutta()
         return self.x_x, self.y_y
 
